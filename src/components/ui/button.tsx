@@ -1,12 +1,11 @@
+import React from 'react';
 import { cn } from '@utils/ui-design';
 import Image from 'next/image';
-import React from 'react';
-// import spinnerIcon from '@assets/icons/spinner-icon.svg';
+import spinner from '@assets/icons/spinner-icon.svg';
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
-  variant?: 'default' | 'primary' | 'secondary';
-  iconRight?: React.ReactNode;
+  variant?: 'primary' | 'secondary';
   iconLeft?: React.ReactNode;
   onClick?: () => void;
   loading?: boolean;
@@ -14,9 +13,8 @@ interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<IButtonProps> = ({
-  variant = 'default',
+  variant = 'primary',
   iconLeft,
-  iconRight,
   className = '',
   value = '',
   onClick,
@@ -25,9 +23,8 @@ const Button: React.FC<IButtonProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    default: 'bg-gray-300 text-black hover:bg-gray-400',
-    primary: 'bg-blue-500 text-white hover:bg-blue-600',
-    secondary: 'bg-gray-500 text-white hover:bg-gray-600',
+    primary: 'bg-black text-white hover:bg-gray-600',
+    secondary: 'bg-gray-200 text-black hover:bg-gray-300',
   };
 
   return (
@@ -35,19 +32,16 @@ const Button: React.FC<IButtonProps> = ({
       onClick={onClick}
       disabled={loading || disabled}
       className={cn(
-        `flex items-center justify-center rounded-md px-6 py-2 font-medium transition-all ${variantStyles[variant]}`,
+        `flex items-center justify-center gap-3 rounded-md px-6 py-3 text-base font-normal transition-all ${variantStyles[variant]}`,
         className
       )}
       {...props}
     >
-      {iconLeft && !loading && <span className="mr-2">{iconLeft}</span>}
+      {iconLeft && !loading && <span>{iconLeft}</span>}
       {loading && (
-        <div className="ml-2">
-          {/* <Image src={spinnerIcon} alt="spinner" className="size-5" /> */}
-        </div>
+        <Image src={spinner} alt="spinner" className="size-6 animate-spin" />
       )}
       <span>{loading ? 'Generating...' : value}</span>
-      {iconRight && !loading && <span className="ml-2">{iconRight}</span>}
     </button>
   );
 };

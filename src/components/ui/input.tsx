@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <input
       className={cn(
-        `w-full px-4 py-2 text-base text-gray-700 transition focus:outline-none ${variantStyles[variant]}`,
+        `w-full px-5 py-2 text-base text-gray-700 transition focus:outline-none ${variantStyles[variant]}`,
         className
       )}
       {...props}
