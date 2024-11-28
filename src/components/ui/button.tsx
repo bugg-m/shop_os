@@ -2,15 +2,7 @@ import React from 'react';
 import { cn } from '@utils/ui-design';
 import Image from 'next/image';
 import spinner from '@assets/icons/spinner-icon.svg';
-
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  value: string;
-  variant?: 'primary' | 'secondary';
-  iconLeft?: React.ReactNode;
-  onClick?: () => void;
-  loading?: boolean;
-  disabled?: boolean;
-}
+import { IButtonProps } from '@constants/types/ui-types';
 
 const Button: React.FC<IButtonProps> = ({
   variant = 'primary',
@@ -23,8 +15,13 @@ const Button: React.FC<IButtonProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    primary: 'bg-black text-white hover:bg-gray-600',
+    outline: 'text-black hover:bg-gray-100 border border-gray-300',
+    outlineRounded:
+      'text-black hover:bg-gray-100 border border-gray-300 rounded-full',
+    primary: 'bg-black text-white hover:bg-zinc-800',
     secondary: 'bg-gray-200 text-black hover:bg-gray-300',
+    primaryRounded: 'bg-black text-white hover:bg-zinc-800 rounded-full',
+    secondaryRounded: 'bg-gray-200 text-black hover:bg-gray-300 rounded-full',
   };
 
   return (
@@ -32,7 +29,7 @@ const Button: React.FC<IButtonProps> = ({
       onClick={onClick}
       disabled={loading || disabled}
       className={cn(
-        `flex items-center justify-center gap-3 rounded-md px-6 py-3 text-base font-normal transition-all ${variantStyles[variant]}`,
+        `flex items-center justify-center gap-3 shadow-md rounded-md px-6 py-3 text-base font-normal transition-all ${variantStyles[variant]}`,
         className
       )}
       {...props}

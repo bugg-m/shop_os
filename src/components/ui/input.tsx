@@ -1,9 +1,6 @@
+import { InputProps } from '@constants/types/ui-types';
 import { cn } from '@utils/ui-design';
 import React from 'react';
-
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: 'default' | 'outlined' | 'filled' | 'none';
-}
 
 const Input: React.FC<InputProps> = ({
   variant = 'default',
