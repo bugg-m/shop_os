@@ -1,8 +1,11 @@
+'use client';
+
 import { IHeaderProps } from '@constants/types/core-types';
 import Image from 'next/image';
 import React from 'react';
 import arrowIcon from '@assets/icons/arrow-icon.svg';
 import Button from '@components/ui/button';
+import { useRouter } from 'next/navigation';
 
 const Header: React.FC<IHeaderProps> = ({
   label,
@@ -13,6 +16,14 @@ const Header: React.FC<IHeaderProps> = ({
   onBack,
   onAction,
 }) => {
+  const router = useRouter();
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      router.back();
+    }
+  };
   return (
     <div
       className={`flex items-center justify-between bg-white py-4 ${isBorder ? 'border-b border-gray-200' : ''}`}
@@ -20,7 +31,7 @@ const Header: React.FC<IHeaderProps> = ({
       <div className="flex items-center gap-5">
         {showBackButton && (
           <Image
-            onClick={onBack}
+            onClick={handleBack}
             src={arrowIcon}
             alt="arrow_back"
             className="cursor-pointer"

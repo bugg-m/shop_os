@@ -1,19 +1,28 @@
+'use client';
+
 import StoreExampleCard from '@components/cards/StoreExampleCard';
 import Header from '@components/header/Header';
 import Button from '@components/ui/button';
 import { IStoreExampleCardProps } from '@constants/types/core-types';
-import { StoreExampleItems } from '@static/store-example-items';
+import { StoreExampleItems } from '@static/store-items';
 import Image from 'next/image';
 import React from 'react';
 import addCircle from '@assets/icons/add-circle-icon.svg';
+import { usePathname, useRouter } from 'next/navigation';
+import ContainerWrapper from '@wrappers/ContainerWrapper';
 
 const Stores = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigate = () => {
+    const newPath = `${pathname}/createStore`;
+    router.push(newPath);
+  };
   return (
-    <div className="flex size-full items-start justify-center">
+    <ContainerWrapper className="items-start">
       <div className="w-1/2">
-        <header>
-          <Header label="My Stores" />
-        </header>
+        <Header label="My Stores" />
         <div>
           <div className="rounded-lg bg-neutral-100 px-5 py-6">
             <h2 className="mb-4 text-2xl font-bold text-gray-800">
@@ -47,6 +56,7 @@ const Stores = () => {
             </div>
             <div>
               <Button
+                onClick={handleNavigate}
                 variant="primaryRounded"
                 value="Create a Store"
                 iconLeft={<Image src={addCircle} alt="add icon" />}
@@ -55,7 +65,7 @@ const Stores = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ContainerWrapper>
   );
 };
 export default Stores;
