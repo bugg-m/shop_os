@@ -6,6 +6,7 @@ import { IButtonProps } from '@constants/types/ui-types';
 
 const Button: React.FC<IButtonProps> = ({
   variant = 'primary',
+  shadowVariant = 'shadow',
   iconLeft,
   className = '',
   value = '',
@@ -15,13 +16,20 @@ const Button: React.FC<IButtonProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    outline: 'text-black hover:bg-gray-100 border border-gray-300',
+    outline: 'text-black hover:bg-gray-100 border border-gray-200',
     outlineRounded:
-      'text-black hover:bg-gray-100 border border-gray-300 rounded-full',
+      'text-black hover:bg-gray-100 border border-gray-200 rounded-full',
     primary: 'bg-black text-white hover:bg-zinc-800',
     secondary: 'bg-gray-200 text-black hover:bg-gray-300',
     primaryRounded: 'bg-black text-white hover:bg-zinc-800 rounded-full',
     secondaryRounded: 'bg-gray-200 text-black hover:bg-gray-300 rounded-full',
+  };
+
+  const shadowStyles = {
+    none: '',
+    shadow: 'shadow',
+    shadowMd: 'shadow-md',
+    shadowLg: 'shadow-lg',
   };
 
   return (
@@ -29,7 +37,7 @@ const Button: React.FC<IButtonProps> = ({
       onClick={onClick}
       disabled={loading || disabled}
       className={cn(
-        `flex items-center justify-center gap-3 shadow-md rounded-md px-6 py-3 text-base font-normal transition-all ${variantStyles[variant]}`,
+        `flex items-center justify-center gap-3 rounded-md px-6 py-3 text-base font-normal transition-all ${variantStyles[variant]} ${shadowStyles[shadowVariant]}`,
         className
       )}
       {...props}

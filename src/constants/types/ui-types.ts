@@ -1,6 +1,7 @@
 export interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
+  shadowVariant?: 'none' | 'shadow' | 'shadowMd' | 'shadowLg';
   variant?:
     | 'primary'
     | 'secondary'
@@ -14,7 +15,23 @@ export interface IButtonProps
   disabled?: boolean;
 }
 
-export interface InputProps
+export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  variant?: 'default' | 'outlined' | 'filled' | 'none';
+  variant?: 'default' | 'filled' | 'none' | 'defaultRounded' | 'filledRounded';
+  label?: string;
+}
+
+export interface ITextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  variant?: 'default' | 'filled' | 'none' | 'defaultRounded' | 'filledRounded';
+  label: string;
+}
+
+export interface IUploadFileProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  title?: string;
+  subtitle?: string;
+  accept?: string;
+  multiple?: boolean;
+  onFileSelect?: (files: FileList | null) => void;
 }
