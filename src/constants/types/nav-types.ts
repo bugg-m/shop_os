@@ -1,5 +1,12 @@
-export interface IMenuItem {
+import { StaticImageData } from 'next/image';
+
+export interface IMenuItems {
   path: string;
-  icon: string;
-  selectedIcon: string;
+  icon: StaticImageData;
+  selectedIcon: StaticImageData;
+}
+export interface IQuickMenuItems {
+  path: string;
+  label: string;
+  icon: StaticImageData;
 }
